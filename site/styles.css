@@ -63,7 +63,8 @@
 /* Keep the document fixed while a dialog or avatar editor scrolls on touch devices. */
 html:has(dialog[open]),body:has(dialog[open]){overflow:hidden;overscroll-behavior:none}
 dialog{position:fixed;inset:0;margin:auto}
-dialog .close{z-index:20;touch-action:manipulation;min-width:44px;min-height:44px;padding:4px;display:grid;place-items:center}
+dialog .close{z-index:20;touch-action:manipulation;width:42px;height:42px;min-width:42px;min-height:42px;padding:0;display:grid;place-items:center;border-radius:50%;background:var(--bg);border:1px solid var(--line);box-shadow:0 4px 14px #0002;font-size:25px;line-height:1;right:12px;top:12px}
+dialog .close:hover,dialog .close:focus-visible{background:var(--red);color:#fff;border-color:var(--red);outline:3px solid #cf402d44;outline-offset:2px}
 dialog[open]{overscroll-behavior:contain}
 dialog[open] .dialog-content{overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
 #character,#profileChooser,#account,#auth,#checkout,#myOrders,#receipt{max-height:90dvh}
