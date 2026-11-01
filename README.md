@@ -1,8 +1,29 @@
 # Pizzasuna
 
-Restaurant ordering website with a customer ordering flow, order tracking, and a password-protected restaurant dashboard.
+Pizzasuna is a full-stack pizza ordering website for a wood-fired restaurant in Istanbul. Customers can create an account, customize pizzas, save delivery details, place demo orders, and track order progress. Restaurant staff can sign in to a protected dashboard, view incoming orders, and update kitchen status.
 
-## Run locally
+## Live links
+
+- Customer website: https://pizzasuna.onrender.com
+- Restaurant dashboard: https://pizzasuna.onrender.com/admin
+- Health check: https://pizzasuna.onrender.com/api/health
+- Source repository: https://github.com/azzaalmousli/pizzasuna
+
+## QR code
+
+The QR code points to the live customer website. Print or share [pizzasuna-qr.svg](./pizzasuna-qr.svg) to let customers open the menu on their phones. It points to the deployed URL, never to localhost.
+
+## Features
+
+- Responsive pizza menu with customization, toppings, notes, and cart persistence
+- Account creation and login with optional email and address fields
+- Delivery address search, map pinning, and browser location support
+- Demo checkout with expiry and CVC validation
+- Demo order creation and customer order tracking
+- Protected restaurant dashboard with order refresh, sound alert, filtering, and status updates
+- Neon Postgres storage for accounts, sessions, orders, and order items
+
+## Local development
 
 Requires Node.js 24 or newer.
 
@@ -12,24 +33,27 @@ npm run db:migrate
 npm run dev
 ```
 
-Open `http://localhost:3015` for the shop and `http://localhost:3015/admin` for the restaurant dashboard. Set `DATABASE_URL` and `PIZZASUNA_ADMIN_PASSWORD` in a local `.env.local` file. Keep that file private; it is ignored by Git.
+Open `http://localhost:3015` for the customer site and `http://localhost:3015/admin` for the dashboard. Set `DATABASE_URL` and `PIZZASUNA_ADMIN_PASSWORD` in a private `.env.local` file. These files are ignored by Git.
 
-## Database and admin access
+## Deployment
 
-The app uses Neon Postgres. The restaurant dashboard at `/admin` can view orders and update order status through the protected application API; it does not expose raw SQL or database credentials. Raw database access stays in the Neon Console and the private `DATABASE_URL` secret. Apply the schema with `npm run db:migrate`. Configure `DATABASE_URL` as a secret environment variable on the hosting provider. Never commit `.env`, `.env.local`, Neon credentials, or database dumps.
+The app is deployed as a Docker Web Service on Render and uses Neon Postgres. Render reads `render.yaml` and deploys from the `main` branch. Configure these as private Render environment variables:
 
-## Deploy with Render
+- `DATABASE_URL`: Neon Postgres connection string
+- `PIZZASUNA_ADMIN_PASSWORD`: unique dashboard password with at least 16 characters
 
-The repository includes a Dockerfile and `render.yaml` blueprint. Create a Render Web Service from this repository, configure `DATABASE_URL` as a secret, and ensure `PIZZASUNA_ADMIN_PASSWORD` is a unique secret of at least 16 characters. Apply the Neon schema before serving traffic with `npm run db:migrate`. The app listens on Render's `PORT` and exposes `/api/health` for its health check.
+The `/api/health` endpoint confirms that the application and database are connected.
 
-Payments are demo-only: checkout creates demo orders and does not charge a card or transfer money. The restaurant receives orders in `/admin`; no email or SMS notifications are configured.
+## Security and payment scope
 
-## QR code
+The dashboard exposes application-level order controls, not raw SQL or database credentials. Database access remains in Neon and through the private `DATABASE_URL` secret. Passwords use salted scrypt hashes, sessions are hashed and expire, and the server calculates order totals from its menu.
 
-Use the deployed URL `https://pizzasuna.onrender.com` as the QR destination. A QR code is only useful after the public deployment is live; it should never point to `localhost`.
+Checkout is intentionally demo-only. It accepts test card details, creates an order, and clearly shows that no real charging occurs. No card number, expiry, or CVC is stored or sent to the database. Connect a real payment provider before accepting live payments.
 
-## Build check
+## Project commands
 
 ```powershell
-npm run build
+npm run build       # syntax and static-file checks
+npm run db:migrate  # apply the Neon schema
+npm run dev         # start the local server
 ```
