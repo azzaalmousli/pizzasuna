@@ -78,6 +78,7 @@ $('#place').onclick=async()=>{
  }catch(e){$('#checkoutMsg').textContent=e.message}finally{button.disabled=false}
 };
 $$('.close').forEach(b=>b.onclick=()=>{const id=b.dataset.close;if(id==='drawer'){$('#drawer').classList.remove('show');$('#shade').classList.remove('show')}else if(id)closeDialog('#'+id)});
+$$('dialog').forEach(dialog=>dialog.addEventListener('click',event=>{if(event.target===dialog)dialog.close()}));
 if(localStorage.getItem('pizzasunaTheme')==='night'){document.body.classList.add('night');$('#theme').textContent='☀'}
 api('/me').then(x=>{user=x.user;render()}).catch(()=>render());
 renderCharacter();
