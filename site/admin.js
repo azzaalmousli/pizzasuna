@@ -1,5 +1,5 @@
 'use strict';
-document.head.insertAdjacentHTML('beforeend','<link rel="icon" type="image/svg+xml" href="assets/pizzasuna-icon.svg"><style>header>a{display:block;width:164px;height:48px;background:url("assets/pizzasuna-logo.svg") center/contain no-repeat;font-size:0}#orderDay{min-width:150px}</style>');
+document.head.insertAdjacentHTML('beforeend','<link rel="icon" type="image/svg+xml" href="assets/pizzasuna-icon.svg"><style>#orderDay{min-width:150px}</style>');
 const $=s=>document.querySelector(s),esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 let orders=[],seen=new Set(),loaded=false,timer,audioContext=null,fetching=false;
 const money=n=>'₺'+Number(n).toLocaleString('tr-TR');
