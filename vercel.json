@@ -1,0 +1,8 @@
+{
+  "version": 2,
+  "builds": [{ "src": "site/**", "use": "@vercel/static-build", "config": { "distDir": "site" } }],
+  "routes": [
+    { "src": "/admin", "dest": "/admin.html" },
+    { "src": "/(.*)", "dest": "/$1" }
+  ]
+}

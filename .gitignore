@@ -1,0 +1,12 @@
+data/
+work/
+outputs/
+*.db
+*.db-wal
+*.db-shm
+.env*
+!.env.example
+
+.neon
+node_modules/
+.env.local
