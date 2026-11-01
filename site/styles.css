@@ -60,3 +60,11 @@
 .order-progress{list-style:none;padding:0;margin:20px 0;display:grid;grid-template-columns:repeat(4,1fr);gap:6px}.order-progress li{font-size:10px;color:var(--muted);text-align:center;border-top:3px solid var(--line);padding-top:8px}.order-progress li.complete{border-color:var(--red);color:var(--ink)}.order-progress li[aria-current]{font-weight:800}.order-progress span{display:block;margin-bottom:5px}.order-cancelled{color:var(--red)}
 #myOrders{max-height:85vh;overflow-y:auto}
 @media(max-width:380px){.site-header{padding:0 10px}.header-actions{gap:5px}.logo{font-size:18px}.track-order-btn{font-size:11px}.bag-btn{padding:9px}}
+/* Keep the document fixed while a dialog or avatar editor scrolls on touch devices. */
+html:has(dialog[open]),body:has(dialog[open]){overflow:hidden;overscroll-behavior:none}
+dialog[open]{overscroll-behavior:contain}
+dialog[open] .dialog-content{overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
+#character,#profileChooser,#account,#auth,#checkout,#myOrders,#receipt{max-height:90dvh}
+#character .dialog-content,#profileChooser .dialog-content,#account .dialog-content,#auth .dialog-content,#checkout .dialog-content,#myOrders .dialog-content,#receipt .dialog-content{max-height:90dvh;overflow-y:auto;touch-action:pan-y}
+.profile-editor{border-top:1px solid var(--line);margin-top:20px;padding-top:4px}
+@media(max-width:560px){#character{max-height:94dvh;overflow:hidden}#character .dialog-content{max-height:94dvh;overflow-y:auto;padding-bottom:34px}#account .dialog-content{max-height:94dvh}}
