@@ -13,6 +13,14 @@ Pizzasuna is a full-stack pizza ordering website for a wood-fired restaurant in 
 
 The QR code points to the live customer website. Print or share [pizzasuna-qr.svg](./pizzasuna-qr.svg) to let customers open the menu on their phones. It points to the deployed URL, never to localhost.
 
+![Pizzasuna website QR code](./pizzasuna-qr.svg)
+
+## Visual preview
+
+![Diavola pizza](./site/assets/menu-diavola.png)
+![Margherita pizza](./site/assets/menu-margherita.png)
+![Wood-fired oven](./site/assets/oven-real.png)
+
 ## Features
 
 - Responsive pizza menu with customization, toppings, notes, and cart persistence
