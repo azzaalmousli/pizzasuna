@@ -60,6 +60,8 @@
 .order-progress{list-style:none;padding:0;margin:20px 0;display:grid;grid-template-columns:repeat(4,1fr);gap:6px}.order-progress li{font-size:10px;color:var(--muted);text-align:center;border-top:3px solid var(--line);padding-top:8px}.order-progress li.complete{border-color:var(--red);color:var(--ink)}.order-progress li[aria-current]{font-weight:800}.order-progress span{display:block;margin-bottom:5px}.order-cancelled{color:var(--red)}
 #myOrders{max-height:85vh;overflow-y:auto}
 @media(max-width:380px){.site-header{padding:0 10px}.header-actions{gap:5px}.logo{font-size:18px}.track-order-btn{font-size:11px}.bag-btn{padding:9px}}
+.logo{display:block;width:164px;height:48px;background:url('assets/pizzasuna-logo.svg') center/contain no-repeat;font-size:0;letter-spacing:0}
+.char-hair.long-curly{height:94px;border-radius:55% 45% 42% 58%;filter:drop-shadow(0 4px 0 var(--hair))}
 /* Keep the document fixed while a dialog or avatar editor scrolls on touch devices. */
 html:has(dialog[open]),body:has(dialog[open]){overflow:hidden;overscroll-behavior:none}
 dialog{position:fixed;inset:0;margin:auto}

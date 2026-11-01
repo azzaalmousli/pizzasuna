@@ -15,6 +15,7 @@ const itemKey=(name,size,toppings,notes)=>JSON.stringify([name,size,toppings,not
 const skinTones=['#f6d0b1','#e7ae82','#c98258','#8d552f','#5a3825'];
 let cart=restoreCart(),pick=0,user=null,map=null,marker=null;
 let character={skin:skinTones[0],hair:'Short',hairColor:'#3b2418',face:'Smile',shirt:'#cf402d',background:'#e8eddf',glasses:false};
+$('#hair')?.insertAdjacentHTML('beforeend','<option>Long curly</option>');
 async function api(path,method='GET',body){const opts={method,headers:{'Content-Type':'application/json'}};if(body)opts.body=JSON.stringify(body);const r=await fetch('/api'+path,opts);let x={};try{x=await r.json()}catch{}if(!r.ok)throw Error(x.error||'Something went wrong.');return x}
 function toast(msg){const t=$('#toast');t.textContent=msg;t.classList.add('show');clearTimeout(toast.timer);toast.timer=setTimeout(()=>t.classList.remove('show'),3500)}
 function openDialog(id){const el=$(id);if(!el.open)el.showModal();if(id==='#account'){setTimeout(()=>{initMap();map?.invalidateSize()},0)}}
@@ -89,7 +90,7 @@ $('#cart').addEventListener('input',e=>{const index=e.target.dataset.noteIndex;i
 $('#shirtColor').oninput=e=>{character.shirt=e.target.value;renderCharacter()};
 $('#avatarBackground').oninput=e=>{character.background=e.target.value;renderCharacter()};
 $('#avatarGlasses').onchange=e=>{character.glasses=e.target.checked;renderCharacter()};
-$('#randomCharacter').onclick=()=>{const choose=a=>a[Math.floor(Math.random()*a.length)];character={skin:choose(skinTones),hair:choose(['Short','Long','Curly','Bob','Bald']),hairColor:choose(['#3b2418','#191919','#a86735','#d5b46f','#80736a']),face:choose(['Smile','Joy','Wink','Calm']),shirt:choose(['#cf402d','#38645a','#466a9d','#b57d38']),background:choose(['#e8eddf','#f4dfce','#dce8f2','#e9def1']),glasses:Math.random()>.5};renderCharacter()};
+$('#randomCharacter').onclick=()=>{const choose=a=>a[Math.floor(Math.random()*a.length)];character={skin:choose(skinTones),hair:choose(['Short','Long','Long curly','Curly','Bob','Bald']),hairColor:choose(['#3b2418','#191919','#a86735','#d5b46f','#80736a']),face:choose(['Smile','Joy','Wink','Calm']),shirt:choose(['#cf402d','#38645a','#466a9d','#b57d38']),background:choose(['#e8eddf','#f4dfce','#dce8f2','#e9def1']),glasses:Math.random()>.5};renderCharacter()};
 
 // Arrow keys move through authentication fields; left/right retain text editing within a field.
 for(const form of [$('#login'),$('#register')])form.addEventListener('keydown',event=>{
